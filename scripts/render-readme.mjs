@@ -8,6 +8,7 @@ const readmePath = join(root, "README.md");
 
 const DASH = "—";
 const COLUMNS = [
+  "Roles",
   "Model",
   "OpenRouter",
   "In $/M",
@@ -29,8 +30,15 @@ function formatSlug(slug) {
   return slug ? escapeCell(slug) : DASH;
 }
 
+function formatRoles(roles) {
+  return Array.isArray(roles) && roles.length > 0
+    ? escapeCell(roles.join(", "))
+    : DASH;
+}
+
 function row(model) {
   return [
+    formatRoles(model.roles),
     escapeCell(model.name),
     formatSlug(model.openrouter_slug),
     formatPrice(model.input_per_m),
