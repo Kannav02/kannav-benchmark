@@ -1,0 +1,7 @@
+{
+  "name": "kannav-benchmark",
+  "private": true,
+  "scripts": {
+    "render": "node scripts/render-readme.mjs"
+  }
+}
