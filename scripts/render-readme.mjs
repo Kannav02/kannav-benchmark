@@ -7,7 +7,15 @@ const dataPath = join(root, "models.json");
 const readmePath = join(root, "README.md");
 
 const DASH = "—";
-const COLUMNS = ["Model", "In $/M", "Out $/M", "Cache $/M", "Reasoning", "Rationale"];
+const COLUMNS = [
+  "Model",
+  "OpenRouter",
+  "In $/M",
+  "Out $/M",
+  "Cache $/M",
+  "Reasoning",
+  "Rationale",
+];
 
 function formatPrice(value) {
   return value == null ? DASH : String(value);
@@ -17,9 +25,14 @@ function escapeCell(value) {
   return String(value).replaceAll("|", "\\|").replaceAll("\n", " ");
 }
 
+function formatSlug(slug) {
+  return slug ? escapeCell(slug) : DASH;
+}
+
 function row(model) {
   return [
     escapeCell(model.name),
+    formatSlug(model.openrouter_slug),
     formatPrice(model.input_per_m),
     formatPrice(model.output_per_m),
     formatPrice(model.cache_hit_per_m),
